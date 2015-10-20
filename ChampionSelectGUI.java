@@ -49,7 +49,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	private final String[] regionArr = new String[1];
 	private final String[] roleArr = new String[1];
 	private final Boolean[] teamArr = new Boolean[1];
-
 	public ArrayList<String> bannedChamps = new ArrayList<String>();
 	private ArrayList<String> blueBans = new ArrayList<String>();
 	private ArrayList<String> purpleBans = new ArrayList<String>();
@@ -107,6 +106,17 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		add(centerPanel, BorderLayout.CENTER);
 	}
 
+	public void createNoBanButton() {
+		noban = new JButton("Click here if the current team missed a ban");
+		noban.setName("noban");
+		noban.setBackground(Color.GRAY);
+		noban.setForeground(Color.WHITE);
+		noban.setBorderPainted(false);
+		noban.addActionListener(this);
+		noban.setBounds(400, 50, 400, 100);
+		bottomPanel.add(noban, new Integer(1));
+	}
+
 	public void setupBottomPanel() {
 		chatSlot = new ImageIcon(getClass().getResource("background/BottomCenter.png"));
 		blueBanSlot = new ImageIcon(getClass().getResource("background/LeftTeamBans.png"));
@@ -130,14 +140,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		quit.setContentAreaFilled(false);
 		quit.setBounds(27, 165, 240, 30);
 		bottomPanel.add(quit, new Integer(1));
-		noban = new JButton("Click here if the current team missed a ban");
-		noban.setName("noban");
-		noban.setBackground(Color.GRAY);
-		noban.setForeground(Color.WHITE);
-		noban.setBorderPainted(false);
-		noban.addActionListener(this);
-		noban.setBounds(400, 50, 400, 100);
-		bottomPanel.add(noban, new Integer(1));
+		createNoBanButton();
 		add(bottomPanel, BorderLayout.PAGE_END);
 		blueBanLabel.setBounds(0, 0, 279, 243);
 		chatLabel.setBounds(279, 0, 1004, 243);
@@ -201,13 +204,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			public void windowOpened(WindowEvent e) {
 				input.requestFocus();
 			}
-
 			public void windowClosed(WindowEvent e) {}
 			public void windowIconified(WindowEvent e) { }
 			public void windowDeiconified(WindowEvent e) { }
 			public void windowActivated(WindowEvent e) { }
 			public void windowDeactivated(WindowEvent e) { }
-
 		});
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -259,11 +260,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			}
 			public void windowOpened(WindowEvent e) {}
 			public void windowClosed(WindowEvent e) {}
-			public void windowIconified(WindowEvent e) { }
-			public void windowDeiconified(WindowEvent e) { }
-			public void windowActivated(WindowEvent e) { }
-			public void windowDeactivated(WindowEvent e) { }
-
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
 		});
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -314,7 +314,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			public void windowDeiconified(WindowEvent e) { }
 			public void windowActivated(WindowEvent e) { }
 			public void windowDeactivated(WindowEvent e) { }
-
 		});
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -362,7 +361,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			public void windowDeiconified(WindowEvent e) { }
 			public void windowActivated(WindowEvent e) { }
 			public void windowDeactivated(WindowEvent e) { }
-
 		});
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -400,11 +398,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return result;
 	}
 
-	public static void main(String[] args) {
-		final ChampionSelectGUI t = new ChampionSelectGUI();
-		t.setSize(1280, 780);
-		t.setTitle("Champion Select GUI v 0.1");
-		t.setLocationRelativeTo(null);
+	public static void getDataWithDialogs(ChampionSelectGUI t) {
 		JDialog sND = createSummonerNameDialog(t);
 		sND.setVisible(true);
 		JDialog rD = createRegionDialog(t);
@@ -413,6 +407,14 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		roleD.setVisible(true);
 		JDialog teamD = createTeamDialog(t);
 		teamD.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		final ChampionSelectGUI t = new ChampionSelectGUI();
+		t.setSize(1280, 780);
+		t.setTitle("Champion Select GUI v 0.1");
+		t.setLocationRelativeTo(null);
+		getDataWithDialogs(t);
 		String summonerName = t.summNameArr[0];
 		summonerName = stripName(summonerName);
 		String region = t.regionArr[0];
@@ -440,8 +442,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		}
 		t.setVisible(true);
 	    t.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	    t.getChampionBans(true);
-	    t.getChampionPicks(true);
+	    t.getChampionBans();
+	    t.getChampionPicks(blueSide);
 	    double maxScore = .5;
 	    String maxChamp = "";
 	    PriorityQueue<ScoredChampion> pq = new PriorityQueue<ScoredChampion>(X_RECOMMENDAITONS, new ScoredChampionComparator());
@@ -463,7 +465,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    	allyList = t.purplePicks;
 	    	enemyList = t.bluePicks;
 	    }
-
 	    HashMap<String, History> allyHistMap = Helpers.loadHistMap(true);
 	    HashMap<String, History> enemyHistMap = Helpers.loadHistMap(false);
 	    if (allyHistMap == null || enemyHistMap == null) {
@@ -516,7 +517,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    System.exit(0);
 	}
 
-	public void getChampionBans(boolean blueSide) {
+	public void createBlueBanHighlight() {
 		blueBanHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
 	    	    g.setColor(getBackground());
@@ -527,7 +528,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		blueBanHighlight.setBackground(new Color(255, 217, 0, 120));
 		bottomPanel.add(blueBanHighlight, new Integer(1));
 		blueBanHighlight.setBounds(23, 29, 245, 135);
+	}
 
+	public void createPurpleBanHighlight() {
 		purpleBanHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
 	    	    g.setColor(getBackground());
@@ -539,7 +542,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		bottomPanel.add(purpleBanHighlight, new Integer(1));
 		purpleBanHighlight.setBounds(1014, 29, 245, 168);
 		purpleBanHighlight.setVisible(false);
+	}
 
+	public void getChampionBans() {
+		createBlueBanHighlight();
+		createPurpleBanHighlight();
 		blueBan = true;
 		ArrayList<String> temp = CHAMPIONLIST;
 	    while (numBlueBans < 3 || numPurpleBans < 3) {
@@ -556,7 +563,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    }
 	}
 
-	public void getChampionPicks(boolean blueSide) {
+	public void createBluePickHiglight() {
 		bluePickHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
 	    	    g.setColor(getBackground());
@@ -567,7 +574,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		bluePickHighlight.setBackground(new Color(218, 116, 32, 120));
 		leftPanel.add(bluePickHighlight, new Integer(1));
 		bluePickHighlight.setBounds(18, 10, 210, 88);
+	}
 
+	public void createPurplePickHiglight() {
 		purplePickHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
 	    	    g.setColor(getBackground());
@@ -579,7 +588,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		rightPanel.add(purplePickHighlight, new Integer(1));
 		purplePickHighlight.setBounds(45, 10, 210, 88);
 		purplePickHighlight.setVisible(false);
+	}
 
+	public void createFinishedButton() {
 		JButton finished = new JButton("Click here when finished inputting selected champions");
 		finished.setName("finished");
 		finished.setBackground(Color.GRAY);
@@ -588,8 +599,20 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		finished.addActionListener(this);
 		finished.setBounds(400, 50, 400, 100);
 		bottomPanel.add(finished, new Integer(4));
+	}
+
+	public void getChampionPicks(boolean blueSide) {
+		createBluePickHiglight();
+		createPurplePickHiglight();
+		createFinishedButton();
+		int pickReq = 0;
+		if (blueSide) {
+			pickReq = 4;
+		} else {
+			pickReq = 5;
+		}
 		ArrayList<String> temp = CHAMPIONLIST;
-	    while (!finishedPicking) {
+	    while (!finishedPicking && (numBluePicks < pickReq)) {
 	    	try {
 	    		ArrayList<String> aL = findChampions();
 	    		if (!aL.equals(temp)) {
@@ -761,7 +784,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 					purplePick = true;
 				}
 				else if (numBluePicks == 5) {
-					finishedPicking = true;
 					bluePickHighlight.setVisible(false);
 					bluePick = false;
 				}
