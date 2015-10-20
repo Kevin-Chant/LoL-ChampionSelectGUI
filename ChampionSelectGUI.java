@@ -49,6 +49,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	private final String[] regionArr = new String[1];
 	private final String[] roleArr = new String[1];
 	private final Boolean[] teamArr = new Boolean[1];
+
 	public ArrayList<String> bannedChamps = new ArrayList<String>();
 	private ArrayList<String> blueBans = new ArrayList<String>();
 	private ArrayList<String> purpleBans = new ArrayList<String>();
@@ -425,7 +426,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		    	roleChamps.add(input.nextLine().split("\n")[0]);
 		    }
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	    ArrayList<String> allyList = null;
 	    ArrayList<String> enemyList = null;
@@ -459,6 +460,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    		if (enemyHist != null && ((enemyHist.wins + enemyHist.losses) > MINIMUM_GLOBAL_GAMES)) {
 		    		enemyHists.add(enemyHist);
 				}
+	    	}
+	    	if (globalData.get(champion) == null) {
+	    		System.out.println(champion);
 	    	}
 	    	double score = Calculations.calculateWinMultiplier(allyHists, enemyHists, globalData.get(champion));
 	    	if (userData.get(champion) != null) {

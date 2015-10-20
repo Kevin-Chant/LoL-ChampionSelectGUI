@@ -67,6 +67,7 @@ public class ChampStatisticReader {
                 curr = input.nextLine();
                 if (curr.contains("dname")) {
                     currChamp = curr.split("\"")[1];
+                    if (currChamp.equals("LeBlanc")) currChamp = "Leblanc";
                 }
                 if (winRate) {
                     result.put(currChamp, Double.parseDouble(curr.split("\"")[1].split("%")[0]));
