@@ -57,7 +57,7 @@ public class ChampStatisticReader {
                 break;
         }
         try {
-            String URL = "http://loldb.gameguyz.com/statistics/winRate/" + regionVal + "/0/2/0/0/30";
+            String URL = "http://loldb.gameguyz.com/statistics/winRate/" + regionVal + "/0/2/2/0/30";
             URL website = new URL(URL);
             Scanner input = new Scanner(website.openStream());
             boolean winRate = false;
