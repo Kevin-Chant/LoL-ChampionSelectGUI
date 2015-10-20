@@ -70,12 +70,17 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	 		System.out.println(e);
 	 	}
 	}
-	public ChampionSelectGUI() {
+
+	public void setupPanel() {
 		panel = new JPanel();
 		panel.setLayout(new ModifiedFlowLayout(FlowLayout.LEFT));
-		scroll = new JScrollPane(panel);
 		panel.setBackground(Color.BLACK);
 		panel.setOpaque(true);
+	}
+
+	public void setupScroll() {
+		tabs = new JLayeredPane();
+		scroll = new JScrollPane(panel);
 		champions = new ArrayList<JButton>();
 		addChampions(panel, CHAMPIONLIST);
 		tabs = new JLayeredPane();
@@ -86,13 +91,23 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		tabs.add(championTab, 50);
 		championTab.setBounds(0, 0, tabIcon.getIconWidth(), tabIcon.getIconHeight());
 		search = new JTextField(10);
+		search.addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {search.setText("");}
+			public void focusLost(FocusEvent e) {}
+		});
 		tabs.add(search, 1000);
 		search.setBounds(600, 10, 100, 25);
+	}
+
+	public void setupCenterPanel() {
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 		centerPanel.add(tabs);
 		centerPanel.add(scroll);
 		add(centerPanel, BorderLayout.CENTER);
+	}
+
+	public void setupBottomPanel() {
 		chatSlot = new ImageIcon(getClass().getResource("background/BottomCenter.png"));
 		blueBanSlot = new ImageIcon(getClass().getResource("background/LeftTeamBans.png"));
 		purpleBanSlot = new ImageIcon(getClass().getResource("background/RightTeamBans.png"));
@@ -127,6 +142,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		blueBanLabel.setBounds(0, 0, 279, 243);
 		chatLabel.setBounds(279, 0, 1004, 243);
 		purpleBanLabel.setBounds(1004, 0, 1280, 243);
+	}
+
+	public void setupSidePanels() {
 		leftTeamIcon = new ImageIcon(getClass().getResource("background/LeftTeam.png"));
 		leftTeam = new JLabel(leftTeamIcon);
 		rightTeamIcon = new ImageIcon(getClass().getResource("background/RightTeam.png"));
@@ -144,6 +162,14 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		rightTeam.setBounds(0, 0, 273, 501);
 		rightPanel.add(rightTeam, new Integer(0));
 		add(rightPanel, BorderLayout.LINE_END);
+	}
+
+	public ChampionSelectGUI() {
+		setupPanel();
+		setupScroll();
+		setupCenterPanel();
+		setupBottomPanel();
+		setupSidePanels();
 		addWindowListener(this);
 	}
 
