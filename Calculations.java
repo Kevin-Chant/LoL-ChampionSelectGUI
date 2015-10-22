@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * The class which runs the calculation I came up with (See README for details)
+ * Takes in lists of history objects for a particular character with each of their allies
+ * and enemies as well as the overall regional winrate
+ * Returns a double which represents the score (similar to a winrate) for the average player
+ */
 public class Calculations {
 	public static double calculateWinMultiplier(ArrayList<History> allyHists, ArrayList<History> enemyHists, double globalWin) {
 		double differentialSum = 0;

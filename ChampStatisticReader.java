@@ -17,8 +17,17 @@ import java.util.Comparator;
 import java.io.FileInputStream;
 import java.util.Date;
 
+/** 
+ * A utility class which reads through the online user data from na.op.gg and region data from loldb.gameguyz.com
+ * WILL BE REPLACED upon this application receiving a Production API Key (enabling the collection and storage of
+ * data rather than relying on external sites for pre-processed data)
+ * Each function returns a mapping between Champion names and Winrates as doubles.
+ */
 public class ChampStatisticReader {
 
+    /**
+     * The regional data collector: reads the table of champion winrates for a given region
+     */
     public static HashMap<String, Double> collectGlobalStatistics(String region) {
         HashMap<String, Double> result = new HashMap<String, Double>();
         int regionVal = 0;
@@ -60,6 +69,10 @@ public class ChampStatisticReader {
             String URL = "http://loldb.gameguyz.com/statistics/winRate/" + regionVal + "/0/2/2/0/30";
             URL website = new URL(URL);
             Scanner input = new Scanner(website.openStream());
+            /**
+             * Because of personal lack of knowledge in PHP/HTML and web design in general, I "brute force" load the data with patterns I observed
+             * in the text of the page. 
+             */
             boolean winRate = false;
             String curr;
             String currChamp = "";
@@ -87,6 +100,10 @@ public class ChampStatisticReader {
         }
     }
 
+    /**
+     * The user data collector: reads the user's ranked history for this season with champions that have been played
+     * at least minGames times
+     */
     public static HashMap<String, Double> collectUserStatistics(String summonerName, String region, int minGames) {
         HashMap<String, String> DICTIONARY = new HashMap<String,String>();
         try {

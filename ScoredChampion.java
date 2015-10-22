@@ -1,5 +1,8 @@
 import java.text.DecimalFormat;
 
+/**
+ *
+ */
 public class ScoredChampion implements Comparable<ScoredChampion> {
 	public double winRate;
 	public String champion;
