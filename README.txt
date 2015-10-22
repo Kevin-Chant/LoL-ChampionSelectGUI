@@ -67,9 +67,24 @@ Program Development Information (process) for those interested:
 			a winrate, but isn't truly one. It is, however, a good relative
 			score between multiple champions.
 
-	After the calculations had been set up, I had to start collecting data from the Riot API (which I hadn't used before and had planned not to use, but the data simply wasn't available online), which was a project all on its own, and is why the data set is currently limited to 10,000 games total (for perspective: Lolking's bottom lane synergy chart has over 60,000 matches played with ONE COMBINATION for a month), though should rise as soon as I can demonstrate that this program is worthy of a production key.
-	Now that the data and program are in place, what next?
-		There's always room for improvement in making the code easier to read, which would help it be a learning tool for people interested in league and/or statistical analysis, and bug fixing, as well as minor tune-ups in ease of use and aesthetics. However, unless the prediction formulas turn out to be flawed in some way I don't forsee much change beyond these first few weeks or months. I'll definitely look towards packaging all of this into one executable file, and maybe if it makes sense, create a website where this runs as an applet. Though who knows what the future will hold?
+	After the calculations had been set up, I had to start collecting data from the
+	Riot API (which I hadn't used before and had planned not to use, but the data
+	simply wasn't available online), which was a project all on its own, and is why
+	the data set is currently limited to 10,000 games total (for perspective:
+	Lolking's bottom lane synergy chart has over 60,000 matches played with ONE
+	COMBINATION for a month), though should rise as soon as I can demonstrate that
+	this program is worthy of a production key.
+
+Now that the data and program are in place, what next?
+	
+There's always room for improvement in making the code easier to read, which would
+help it be a learning tool for people interested in league and/or statistical
+analysis, and bug fixing, as well as minor tune-ups in ease of use and aesthetics.
+However, unless the prediction formulas turn out to be flawed in some way I don't
+forsee much change beyond these first few weeks or months. I'll definitely look
+towards packaging all of this into one executable file, and maybe if it makes
+sense, create a website where this runs as an applet.
+Though who knows what the future will hold?
 
 
 
