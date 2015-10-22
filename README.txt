@@ -53,18 +53,19 @@ Program Development Information (process) for those interested:
 	of the data, finally settles on using the output of a Sigmoid function:
 			
 			The function we chose was
-			http://artint.info/figures/ch07/sigmoidc.gif, and what we did was
-			essentially calculate a "horizontal offset" for each ally and enemy
-			champion. The win rates (global and champion combination) went on the
-			Y axis, and from those we determined the correspoding X values, and
-			subtracted to find the offset. We then stated that the total effect
-			of the other 9 characters was simply the sum of these horizontal
-			offsets with the default X value passed back through the function to
-			find a percentage. This is where the relationship between the concepts
-			of "scores" and "winrates" gets a bit fuzzy. Because the output value
-			is just a winrate run both ways through the function, it resembles a
-			winrate, but isn't truly one. It is, however, a good relative score
-			between multiple champions.
+			http://artint.info/figures/ch07/sigmoidc.gif, and what we did
+			was essentially calculate a "horizontal offset" for each ally
+			and enemy champion. The win rates (global and champion
+			combination) went on the Y axis, and from those we determined
+			the correspoding X values, and subtracted to find the offset.
+			We then stated that the total effect of the other 9 characters
+			was simply the sum of these horizontal offsets with the default
+			X value passed back through the function to find a percentage.
+			This is where the relationship between the concepts of "scores"
+			and "winrates" gets a bit fuzzy. Because the output value is
+			just a winrate run both ways through the function, it resembles
+			a winrate, but isn't truly one. It is, however, a good relative
+			score between multiple champions.
 
 	After the calculations had been set up, I had to start collecting data from the Riot API (which I hadn't used before and had planned not to use, but the data simply wasn't available online), which was a project all on its own, and is why the data set is currently limited to 10,000 games total (for perspective: Lolking's bottom lane synergy chart has over 60,000 matches played with ONE COMBINATION for a month), though should rise as soon as I can demonstrate that this program is worthy of a production key.
 	Now that the data and program are in place, what next?
