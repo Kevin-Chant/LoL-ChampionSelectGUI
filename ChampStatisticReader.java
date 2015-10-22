@@ -134,6 +134,10 @@ public class ChampStatisticReader {
             String encoder = "UTF-8";
             InputStream in = URL.openConnection().getInputStream();
             BufferedReader input = new BufferedReader(new InputStreamReader(in, encoder));
+            /**
+             * Again, simply reads strings from the source of the site, causing it to be more prone to errors
+             * Will also be replaced in the near future with more robust methodology
+             */
             boolean reachedData = false;
             String currChamp = "";
             String curr;

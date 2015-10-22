@@ -1,7 +1,9 @@
 import java.text.DecimalFormat;
 
 /**
- *
+ * A small wrapper object to contain both a champion's name and its calculated score/winrate
+ * (more on the distinction between score/winrate in README)
+ * Contains a .toString() method for easier printing and a compareTo for ordering
  */
 public class ScoredChampion implements Comparable<ScoredChampion> {
 	public double winRate;

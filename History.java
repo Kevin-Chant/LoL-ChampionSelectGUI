@@ -1,5 +1,9 @@
 import java.io.Serializable;
 
+/**
+ * Another small wrapper class which contains wins and losses for a matchup/synergy
+ * which is updated whenever the data is being collected (in these files it is simply read)
+ */
 public class History implements Serializable{
 	public int wins;
 	public int losses;

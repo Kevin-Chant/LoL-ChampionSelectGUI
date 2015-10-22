@@ -12,6 +12,13 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.util.PriorityQueue;
 
+/**
+ * This class does the bulk of the work in getting the score.
+ * It is based on a JFrame which creates JDialogs to get information from the user
+ * as well as notify on errors or other informational messages.
+ * This master JFrame holds every element, such as the background images, champion icons,
+ * and search fields.
+ */
 public class ChampionSelectGUI extends JFrame implements ActionListener, WindowListener {
 	private ArrayList<JButton> champions;
 	private JPanel panel;
@@ -70,6 +77,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	 	}
 	}
 
+	/**
+	 * One of the multiple helpers to make the constructor readable
+	 * Initializes the central panel (holds the scrollPane and a few background images)
+	 */
 	public void setupPanel() {
 		panel = new JPanel();
 		panel.setLayout(new ModifiedFlowLayout(FlowLayout.LEFT));
@@ -77,6 +88,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		panel.setOpaque(true);
 	}
 
+	/**
+	 * Another helper, this one initializes the scrolling panel containing the champions
+	 * along with the search bar and a background image
+	 */
 	public void setupScroll() {
 		tabs = new JLayeredPane();
 		scroll = new JScrollPane(panel);
@@ -98,6 +113,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		search.setBounds(600, 10, 100, 25);
 	}
 
+	/**
+	 * The final helper for the center elements, adds them all to one panel and places that
+	 * in the center of the final product
+	 */
 	public void setupCenterPanel() {
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -106,6 +125,12 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		add(centerPanel, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Creates the button for when a team captain misses a ban
+	 * (Subject to graphical update to more closesly follow league's scheme)
+	 * (Please email me with recommendations or an image idea for how to modify
+	 * the button to make it more appealing, and I will credit you if I use it)
+	 */
 	public void createNoBanButton() {
 		noban = new JButton("Click here if the current team missed a ban");
 		noban.setName("noban");
@@ -117,6 +142,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		bottomPanel.add(noban, new Integer(1));
 	}
 
+	/**
+	 * Creates the entire bottom panel with the (nonfunctional) chat area
+	 * and the spots for both team's bans.
+	 */
 	public void setupBottomPanel() {
 		chatSlot = new ImageIcon(getClass().getResource("background/BottomCenter.png"));
 		blueBanSlot = new ImageIcon(getClass().getResource("background/LeftTeamBans.png"));
@@ -147,6 +176,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		purpleBanLabel.setBounds(1004, 0, 1280, 243);
 	}
 
+	/**
+	 * Creates the side panels where the picks will be locked in
+	 */
 	public void setupSidePanels() {
 		leftTeamIcon = new ImageIcon(getClass().getResource("background/LeftTeam.png"));
 		leftTeam = new JLabel(leftTeamIcon);
@@ -167,6 +199,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		add(rightPanel, BorderLayout.LINE_END);
 	}
 
+	/**
+	 * Constructor: Calls each of the helpers then prepares the windowListener
+	 */
 	public ChampionSelectGUI() {
 		setupPanel();
 		setupScroll();
@@ -176,6 +211,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		addWindowListener(this);
 	}
 
+	/**
+	 * The first helper method to create a dialog:
+	 * This one requests the user's summoner name and error checks if nothing was entered
+	 */
 	public static JDialog createSummonerNameDialog(final ChampionSelectGUI t) {
 		final JPanel contentPanel = new JPanel();
 		JLabel request = new JLabel("Please enter your summoner name");
@@ -223,6 +262,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return d;
 	}
 
+	/**
+	 * The second dialog:
+	 * Requests the user's region for use in gathering regional data and for requesting the summoner's information
+	 * from na.op.gg
+	 */
 	public static JDialog createRegionDialog(final ChampionSelectGUI t) {
 		final JPanel contentPanel = new JPanel();
 		JLabel request = new JLabel("Please select your region");
@@ -278,6 +322,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return d;
 	}
 
+	/**
+	 * The third dialog:
+	 * Requests the summoner's role to be played this game (to allow for narrowing of possible champions: i.e. will not recommend Morgana Jungle)
+	 * SUBJECT TO CHANGE IN NEAR FUTURE: Will probably be replaced with check boxes for each role that you may choose to play.
+	 */
 	public static JDialog createRoleDialog(final ChampionSelectGUI t) {
 		final JPanel contentPanel = new JPanel();
 		JLabel request = new JLabel("Please select your role");
@@ -328,6 +377,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return d;
 	}
 
+	/**
+	 * The final dialog:
+	 * Requests which team you're on (note: if you didn't notice in the README, the GUI does NOT align the team sides with yours
+	 * the way league does, so if you are on red team, your teams picks and bans will be on the right side.)
+	 */
 	public static JDialog createTeamDialog(final ChampionSelectGUI t) {
 		final JPanel contentPanel = new JPanel();
 		JLabel request = new JLabel("Please select your team");
@@ -379,6 +433,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return d;
 	}
 
+	/**
+	 * Helper method for determining the base of a summoner name since capitalization and spaces aren't used
+	 * in getting the data
+	 */
 	public static String stripName(String n) {
 		String result = "";
 		String[] parts = n.split(" ");
@@ -389,6 +447,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return result;
 	}
 
+	/**
+	 * Same helper method as above but does not send the name to lower case, as the champion names that have spaces
+	 * (Lee Sin) are expected to maintain capitals but lose the spacing (LeeSin).
+	 */
 	public static String combineName(String n) {
 		String result = "";
 		String[] parts = n.split(" ");
@@ -398,6 +460,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return result;
 	}
 
+	/**
+	 * Helper which runs the dialogs and gets the user's data
+	 */
 	public static void getDataWithDialogs(ChampionSelectGUI t) {
 		JDialog sND = createSummonerNameDialog(t);
 		sND.setVisible(true);
@@ -409,10 +474,18 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		teamD.setVisible(true);
 	}
 
+	/**
+	 * The main method, calls every other process, and will be cleaned up and segmented further into helper
+	 * methods over the next few days/weeks. Initializes the GUI, then runs the data collection dialogs,
+	 * followed by loading the local data (or downloading if it does not exist), and goes through the pick/ban process.
+	 * After this has been completed it goes through every possible champion to play and gives them a score (See README or Calculations.java)
+	 * and multiplies this score by the user's skill (again, see README for more info). Finaly, it creates an informational dialog containing
+	 * the 5 best ranked picks (NOTE: THESE ARE NOT IN ORDER CURRENTLY, THOUGH SHOULD BE SOON. FOR NOW, LOOK AT THE SCORES WITH EACH NAME)
+	 */
 	public static void main(String[] args) {
 		final ChampionSelectGUI t = new ChampionSelectGUI();
 		t.setSize(1280, 780);
-		t.setTitle("Champion Select GUI v 0.1");
+		t.setTitle("Champion Select GUI v 1.0");
 		t.setLocationRelativeTo(null);
 		getDataWithDialogs(t);
 		String summonerName = t.summNameArr[0];
@@ -517,6 +590,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    System.exit(0);
 	}
 
+	/**
+	 * Helper method to initialize the highlighted square over the blue ban area
+	 * (If there are suggestions on another way to show that it is blue team's turn to ban
+	 * I am more than open to an email regarding this, as I created this as a temporary solution)
+	 */
 	public void createBlueBanHighlight() {
 		blueBanHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
@@ -530,6 +608,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		blueBanHighlight.setBounds(23, 29, 245, 135);
 	}
 
+	/**
+	 * Helper method to initialize the highlighted square over the purple ban area
+	 * Like above, I'm still looking for a better solution.
+	 */
 	public void createPurpleBanHighlight() {
 		purpleBanHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
@@ -544,6 +626,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		purpleBanHighlight.setVisible(false);
 	}
 
+	/**
+	 * The loop that waits until all bans have been completed or missed
+	 */
 	public void getChampionBans() {
 		createBlueBanHighlight();
 		createPurpleBanHighlight();
@@ -563,6 +648,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    }
 	}
 
+	/**
+	 * Helper that creates the orange highlight over the currently picking player
+	 * for blue team
+	 */
 	public void createBluePickHiglight() {
 		bluePickHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
@@ -576,6 +665,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		bluePickHighlight.setBounds(18, 10, 210, 88);
 	}
 
+	/**
+	 * Helper that creates the orange highlight over the currently picking player
+	 * for red team
+	 */
 	public void createPurplePickHiglight() {
 		purplePickHighlight = new JLabel() {
     		protected void paintComponent(Graphics g) {
@@ -590,6 +683,12 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		purplePickHighlight.setVisible(false);
 	}
 
+	/**
+	 * Replaces the "missed ban" button with one for finished picking
+	 * Usage: Click when you aren't last pick but you have no additional
+	 * information (i.e. you're third pick on your team and you entered
+	 * the first five champions picked before your turn)
+	 */
 	public void createFinishedButton() {
 		JButton finished = new JButton("Click here when finished inputting selected champions");
 		finished.setName("finished");
@@ -601,6 +700,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		bottomPanel.add(finished, new Integer(4));
 	}
 
+	/**
+	 * The loop that waits until all available pick information has been inputted
+	 */
 	public void getChampionPicks(boolean blueSide) {
 		createBluePickHiglight();
 		createPurplePickHiglight();
@@ -626,6 +728,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    }
 	}
 
+	/**
+	 * A helper method which attempts to ban one champion for red team, but errors
+	 * if they are already banned
+	 * TODO: Overlay the champion's icon in grey
+	 */
 	private int banBlueChampion(String cN) {
 		if (bannedChamps.contains(cN)) {
 			return -1;
@@ -649,6 +756,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return 0;
 	}
 
+	/**
+	 * A helper method which attempts to ban one champion for red team, but errors
+	 * if they are already banned.
+	 * TODO: Overlay the champion's icon in grey
+	 */
 	private int banPurpleChampion(String cN) {
 		if (bannedChamps.contains(cN)) {
 			return -1;
@@ -672,6 +784,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return 0;
 	}
 
+	/**
+	 * The analogous helper for picking a champion for blue team
+	 */
 	private int pickBlueChampion(String cN) {
 		if (bannedChamps.contains(cN) || bluePicks.contains(cN) || purplePicks.contains(cN)) {
 			return -1;
@@ -687,6 +802,9 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return 0;
 	}
 
+	/**
+	 * The analogous helper for picking a champion for red team
+	 */
 	private int pickPurpleChampion(String cN) {
 		if (bannedChamps.contains(cN) || bluePicks.contains(cN) || purplePicks.contains(cN)) {
 			return -1;
@@ -702,6 +820,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return 0;
 	}
 
+	/**
+	 * The method which initially populates the search area
+	 * with every champion's icon
+	 */
 	private void addChampions(JPanel p, ArrayList<String> aL) {
 		p.removeAll();
 		for (String c : aL) {
@@ -715,6 +837,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		repaint();
 	}
 
+	/**
+	 * The helper method which searches for champions matching the given input
+	 * NOTE: There is one difference between this functionality and that of league:
+	 * Searching for "." here returns only Dr. Mundo, whereas in league it shows all champions
+	 */
 	private ArrayList<String> findChampions() {
 		String searchContents = search.getText();
 		ArrayList<String> result = new ArrayList<String>();
@@ -726,6 +853,14 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		return result;
 	}
 
+	/**
+	 * The method which is called any time a button is pressed
+	 * First determines if the button is the quit, finished, or no ban button and
+	 * acts accordingly, then goes through the options based on the current phase
+	 * and attempts to either pick or ban the selected champion for one of the teams.
+	 * Also handles updating the highlight, changing the current phase, and ending if 
+	 * enough champions have been picked.
+	 */
 	public void actionPerformed(ActionEvent evt) {
 		String text = ((JButton) evt.getSource()).getName();
 		if (text != null && text.equals("quit")) {
@@ -810,6 +945,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		}
 	}
 	
+	/**
+	 * Below are the methods required to satisfy the windowListener interface.
+	 * Closes and releases all memory if the GUI window is closed, and when first opened
+	 * automatically sets the keyboard to type to the search bar
+	 */
 	public void windowClosing(WindowEvent e) {
 		System.exit(0);
 	}

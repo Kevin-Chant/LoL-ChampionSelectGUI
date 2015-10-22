@@ -5,6 +5,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 
+/**
+ * A class of static helper methods that involve either reading or writing local data files
+ * as well as combineAlphabetical which creates an alphabetized key to be used in the History maps
+ */
 public class Helpers {
 	public static String combineAlphabetical(String s1, String s2) {
 		if (s1.compareTo(s2) < 0) {
