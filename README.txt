@@ -14,18 +14,33 @@ Important notes for use:
 *ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)
 *DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values
 *How to run:
-	1. Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. Download: http://tinyurl.com/cnafy3t
-	1b. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (Oracle tutorial: http://tinyurl.com/q8wfejk)
-	2. Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git: http://tinyurl.com/pb2tqt4
-	3. From the command line within the directory you copied to run "javac *.java" to compile and prepare the files
-	4. Then run "java ChampionSelectGUI" to start the GUI. You will be asked to input a few fields initially, then the main League-style GUI will run.
-	5. Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)
+	1. Ensure that you have Java SE 7 installed. Java 8 may work, but I do not
+	guarantee it as some methods/implementations did change between the versions. Download:
+	http://tinyurl.com/cnafy3t
+	1b. If the error "javac is not recognized as an internal or external command"
+	appears, look into updating the environment variable PATH (Oracle tutorial:
+	http://tinyurl.com/q8wfejk)
+	2. Get this repository: Either manually download each .java file and the files
+	within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git:
+	http://tinyurl.com/pb2tqt4
+	3. From the command line within the directory you copied to run "javac *.java"
+	to compile and prepare the files
+	4. Then run "java ChampionSelectGUI" to start the GUI. You will be asked to
+	input a few fields initially, then the main League-style GUI will run.
+	5. Click the champions in the central pane to ban and pick, noting that the left
+	team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS
+	SUBJECT TO UPDATE IN THE NEAR FUTURE)
 
 
 Program Development Information (process) for those interested:
-	I started this project at the end of the Spring 2015 semester as a fun idea of "what if I could tell someone what is optimal for them to play." At the time
-	I had no real idea how to combine the data, and I didn't use nearly the depth of stats I do now (I was basically just comparing the global winrate of a champion and the user's winrate).
-	But, that got me started on developing the GUI and getting all the grunt work out of the way (getting every champion's 32x32 and 64x64 pixel square), and I continued into the summer, teaching myself about the javax.swing suite along the way. A few weeks into summer, my job lifeguarding started up right around the time I hit a roadblock on not knowing how to continue the GUI (how to put a champion's icon into the banned or picked area), so I nearly abandoned the project.
+	I started this project at the end of the Spring 2015 semester as a fun idea of
+	"what if I could tell someone what is optimal for them to play." At the time
+	I had no real idea how to combine the data, and I didn't use nearly the depth of
+	stats I do now (I was basically just comparing the global winrate of a champion
+	and the user's winrate).
+	But, that got me started on developing the GUI and getting all the grunt work
+	out of the way (getting every champion's 32x32 and 64x64 pixel square), and I continued
+	into the summer, teaching myself about the javax.swing suite along the way. A few weeks into summer, my job lifeguarding started up right around the time I hit a roadblock on not knowing how to continue the GUI (how to put a champion's icon into the banned or picked area), so I nearly abandoned the project.
 	A few weeks ago I decided to start again and see if I could revisit and finish up what I had started, but had to overhaul almost the whole thing.
 	I sat down with a few friends (and a statistics major or two) to try to figure out what calculation I should be running to determine a scoring methodology, and after quite a few failed attempts at encompassing the diminishing returns nature of the data, finally settles on using the output of a Sigmoid function:
 			
