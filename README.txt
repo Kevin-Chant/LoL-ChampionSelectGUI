@@ -15,14 +15,15 @@ Important notes for use:
 *DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values
 *How to run:
 	1. Ensure that you have Java SE 7 installed. Java 8 may work, but I do not
-	guarantee it as some methods/implementations did change between the versions. Download:
-	http://tinyurl.com/cnafy3t
+	guarantee it as some methods/implementations did change between the versions.
+	Download: http://tinyurl.com/cnafy3t
 	1b. If the error "javac is not recognized as an internal or external command"
 	appears, look into updating the environment variable PATH (Oracle tutorial:
 	http://tinyurl.com/q8wfejk)
 	2. Get this repository: Either manually download each .java file and the files
-	within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git:
-	http://tinyurl.com/pb2tqt4
+	within each folder or use "git clone
+	https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command
+	line with git installed. How to install git: http://tinyurl.com/pb2tqt4
 	3. From the command line within the directory you copied to run "javac *.java"
 	to compile and prepare the files
 	4. Then run "java ChampionSelectGUI" to start the GUI. You will be asked to
@@ -41,14 +42,15 @@ Program Development Information (process) for those interested:
 	But, that got me started on developing the GUI and getting all the grunt work
 	out of the way (getting every champion's 32x32 and 64x64 pixel square), and I
 	continued into the summer, teaching myself about the javax.swing suite along the
-	way. A few weeks into summer, my job lifeguarding started up right around the time
-	I hit a roadblock on not knowing how to continue the GUI (how to put a champion's
-	icon into the banned or picked area), so I nearly abandoned the project.
-	A few weeks ago I decided to start again and see if I could revisit and finish up
-	what I had started, but had to overhaul almost the whole thing.
-	I sat down with a few friends (and a statistics major or two) to try to figure out
-	what calculation I should be running to determine a scoring methodology, and after quite a few failed attempts at encompassing the diminishing returns nature of the
-	data, finally settles on using the output of a Sigmoid function:
+	way. A few weeks into summer, my job lifeguarding started up right around the
+	time I hit a roadblock on not knowing how to continue the GUI (how to put a
+	champion's icon into the banned or picked area), so I nearly abandoned the project.
+	A few weeks ago I decided to start again and see if I could revisit and finish
+	up what I had started, but had to overhaul almost the whole thing.
+	I sat down with a few friends (and a statistics major or two) to try to figure
+	out what calculation I should be running to determine a scoring methodology, and
+	after quite a few failed attempts at encompassing the diminishing returns nature
+	of the data, finally settles on using the output of a Sigmoid function:
 			
 			The function we chose was http://artint.info/figures/ch07/sigmoidc.gif, and what we did was essentially calculate a "horizontal offset" for each ally and enemy champion. The win rates (global and champion combination) went on the Y axis, and from those we determined the correspoding X values, and subtracted to find the offset. We then stated that the total effect of the other 9 characters was simply the sum of these horizontal offsets with the default X value passed back through the function to find a percentage. This is where the relationship between the concepts of "scores" and "winrates" gets a bit fuzzy. Because the output value is just a winrate run both ways through the function, it resembles a winrate, but isn't truly one. It is, however, a good relative score between multiple champions.
 
