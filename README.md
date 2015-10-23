@@ -38,6 +38,10 @@ as well as go back and fix the reliance on searching the backend text of other w
   </uol>
   </p>
 
+<p>How the algorithm actually works:</p>
+
+<p>The program determines a set of champions that could be played (factoring in your role this game and what has been picked/banned), then goes through each one and calculates a score. This score is determined by how each ally/enemy pick affects the winrate of the champion, as well as the user's winrate (assuming a minimum number of ranked games has been played). After going through every possibility, it shows the top 5 scored champions to the user as its recommendations.</p>
+
 <p>Program Development Information (process) for those interested:</p>
     
 <p>I started this project at the end of the Spring 2015 semester as a fun idea of "what if I could tell someone what is optimal for them to play." At the time I had no real idea how to combine the data, and I didn't use nearly the depth of stats I do now (I was basically just comparing the global winrate of a champion and the user's winrate).</p>
