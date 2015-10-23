@@ -8,8 +8,9 @@
 
 <hr />
 
-<p>IF YOU ENCOUNTER A BUG/ERROR DURING USAGE, PLEASE FILL OUT THE <a href="http://goo.gl/forms/se0EBI49lx">BUG-REPORTING FORM</a>
-	
+<p>IF YOU ENCOUNTER A BUG/ERROR DURING USAGE, PLEASE FILL OUT THE <a href="http://goo.gl/forms/se0EBI49lx">BUG-REPORTING FORM</a>.
+
+
 This will provide me with all the necessary information to fix the error
 as soon as possible.</p>
 
