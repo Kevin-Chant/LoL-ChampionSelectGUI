@@ -22,18 +22,19 @@ as well as go back and fix the reliance on searching the backend text of other w
 
 <p>Important notes for use:
 <uol>
-<li>ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)<li>
-<li>DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values<li>
+<li>ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)</li>
+<li>DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values</li>
 <li>How to run:
   <ol>
-  <li>Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. Download: http://tinyurl.com/cnafy3t<li> 
-  <li>Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git: http://tinyurl.com/pb2tqt4<li>
-  <li>From the command line within the directory you copied to run "javac *.java" to compile and prepare the files. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (Oracle tutorial: http://tinyurl.com/q8wfejk)<li>
-  <li>Then run "java ChampionSelectGUI" to start the GUI. You will be asked to input a few fields initially, then the main League-style GUI will run.<li>
-  <li>Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)<li>
+  <li>Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. Download: http://tinyurl.com/cnafy3t</li> 
+  <li>Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git: http://tinyurl.com/pb2tqt4</li>
+  <li>From the command line within the directory you copied to run "javac *.java" to compile and prepare the files. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (Oracle tutorial: http://tinyurl.com/q8wfejk)</li>
+  <li>Then run "java ChampionSelectGUI" to start the GUI. You will be asked to input a few fields initially, then the main League-style GUI will run.</li>
+  <li>Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)</li>
   </ol>
-  <li>
-</p>
+  </li>
+  </uol>
+  </p>
 
 <p>Program Development Information (process) for those interested:
     I started this project at the end of the Spring 2015 semester as a fun idea of
