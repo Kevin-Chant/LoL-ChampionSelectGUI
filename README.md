@@ -21,20 +21,14 @@ as soon as possible.</p>
 as well as go back and fix the reliance on searching the backend text of other websites. I still plan on working through the next few weeks, but updates will probably be slower and lower-priority fixes won't be implemented for a while.</p>
 
 <p>Important notes for use:
-*ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)
-*DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values
-*How to run:
-    1. Ensure that you have Java SE 7 installed. Java 8 may work, but I do not
-    guarantee it as some methods/implementations did change between the versions.
-    Download: http://tinyurl.com/cnafy3t
-    1b. If the error "javac is not recognized as an internal or external command"
-    appears, look into updating the environment variable PATH (Oracle tutorial:
-    http://tinyurl.com/q8wfejk)
-    2. Get this repository: Either manually download each .java file and the files
-    within each folder or use "git clone
-    https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command
-    line with git installed. How to install git: http://tinyurl.com/pb2tqt4
-    3. From the command line within the directory you copied to run "javac *.java"
+* ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)
+* DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values
+* How to run:
+
+1. Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. Download: http://tinyurl.com/cnafy3t 
+  1b. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (Oracle tutorial: http://tinyurl.com/q8wfejk)
+2. Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. How to install git: http://tinyurl.com/pb2tqt4
+3. From the command line within the directory you copied to run "javac *.java"
     to compile and prepare the files
     4. Then run "java ChampionSelectGUI" to start the GUI. You will be asked to
     input a few fields initially, then the main League-style GUI will run.
