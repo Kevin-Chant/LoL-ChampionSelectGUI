@@ -23,8 +23,8 @@ as well as go back and fix the reliance on searching the backend text of other w
 
 <p>Important notes for use:
 <uol>
-<li>ONLY HAS DATA FOR NA currently (will work with other regions but regional variations will not be accounted for)</li>
-<li>DO NOT MODIFY FILES IN THE FOLDER ".data", if they have been changed the code may not run, or may return garbage values</li>
+<li>Only has matchup information for NA currently (will work with other regions but regional variations will not be accounted for)</li>
+<li>DO NOT MODIFY INTERNAL FILES IN THE JAR, especilly those in ".data". if they have been changed the code may not run, or may return garbage values</li>
 <li>How to run:
   <ol>
   <li>Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. <a href ="http://tinyurl.com/cnafy3t">Download Java 7</a></li> 
