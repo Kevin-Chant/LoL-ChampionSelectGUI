@@ -28,10 +28,11 @@ as well as go back and fix the reliance on searching the backend text of other w
 <li>How to run:
   <ol>
   <li>Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. <a href ="http://tinyurl.com/cnafy3t">Download Java 7</a></li> 
-  <li>Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. <a href="http://tinyurl.com/pb2tqt4">How to install git</a></li>
-  <li>From the command line within the directory you copied to run "javac *.java" to compile and prepare the files. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (<a href="http://tinyurl.com/q8wfejk">Oracle Tutorial</a>)</li>
-  <li>Then run "java ChampionSelectGUI" to start the GUI. You will be asked to input a few fields initially, then the main League-style GUI will run.</li>
+  <li>Download the program: Save LoL-ChampionSelectHelper.jar somewhere on your computer</li>
+  <li>Simply double click the file and you're good to go! If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (<a href="http://tinyurl.com/q8wfejk">Oracle Tutorial</a>)</li>
+  <li>You will be asked to input a few fields initially, then the main League-style GUI will run.</li>
   <li>Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)</li>
+  <li>After you're done selecting, a pop-up will appear detailing the top 5 recommendations (not in order) alongside their scores.<li>
   </ol>
   </li>
   </uol>
