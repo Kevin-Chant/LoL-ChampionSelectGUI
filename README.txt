@@ -3,6 +3,12 @@ Latest update: 10/22/2015
 Patch 5.20
 Information Update
 ************************************************************
+IF YOU ENCOUNTER A BUG/ERROR DURING USAGE, PLEASE FILL OUT THE FORM AT:
+http://goo.gl/forms/se0EBI49lx
+This will provide me with all the necessary information to fix the error
+as soon as possible.
+
+
 If you have any questions, comments, concerns, or want to offer your help/ideas, feel free to contact me at chant.kevin@yahoo.com
 
 This program was designed to use data gathered with the Riot API: https://developer.riotgames.com, and I will add a data updating program to this repository within a few days.
