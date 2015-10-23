@@ -15,7 +15,7 @@ as soon as possible.</p>
 
 <p>If you have any questions, comments, concerns, or want to offer your help/ideas, feel free to contact me at chant.kevin@yahoo.com</p>
 
-<p>This program was designed to use data gathered with the Riot API: https://developer.riotgames.com, and I will add a data updating program to this repository within a few days.</p>
+<p>This program was designed to use data gathered with the <a href="https://developer.riotgames.com">Riot API</a>, and I will add a data updating program to this repository within a few days.</p>
 
 <p>Preface: I'm currently about to hit the second wave of midterms and as such I won't have as much time as I'd like to completely overhaul my code in terms of readability
 as well as go back and fix the reliance on searching the backend text of other websites. I still plan on working through the next few weeks, but updates will probably be slower and lower-priority fixes won't be implemented for a while.</p>
