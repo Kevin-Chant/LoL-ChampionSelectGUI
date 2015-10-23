@@ -27,8 +27,8 @@ as well as go back and fix the reliance on searching the backend text of other w
 <li>How to run:
   <ol>
   <li>Ensure that you have Java SE 7 installed. Java 8 may work, but I do not guarantee it as some methods/implementations did change between the versions. Download: http://tinyurl.com/cnafy3t</li> 
-  <li>Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. [How to install git](http://tinyurl.com/pb2tqt4)</li>
-  <li>From the command line within the directory you copied to run "javac *.java" to compile and prepare the files. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH ([Oracle tutorial](http://tinyurl.com/q8wfejk))</li>
+  <li>Get this repository: Either manually download each .java file and the files within each folder or use "git clone https://github.com/Kevin-Chant/LoL-ChampionSelectGUI.git" from the command line with git installed. <a href="http://tinyurl.com/pb2tqt4">How to install git</a></li>
+  <li>From the command line within the directory you copied to run "javac *.java" to compile and prepare the files. If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (<a href="http://tinyurl.com/q8wfejk">Oracle Tutorial</a>)</li>
   <li>Then run "java ChampionSelectGUI" to start the GUI. You will be asked to input a few fields initially, then the main League-style GUI will run.</li>
   <li>Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)</li>
   </ol>
@@ -44,7 +44,7 @@ But, that got me started on developing the GUI and getting all the grunt work ou
 
 A few weeks ago I decided to start again and see if I could revisit and finish up what I had started, but had to overhaul almost the whole thing. I sat down with a few friends (and a statistics major or two) to try to figure out what calculation I should be running to determine a scoring methodology, and after quite a few failed attempts at encompassing the diminishing returns nature of the data, finally settles on using the output of a Sigmoid function:</p>
 
-<p>[This was the function we chose](http://artint.info/figures/ch07/sigmoidc.gif), and what we did was essentially calculate a "horizontal offset" for each ally and enemy champion. The win rates (global and champion combination) went on the Y axis, and from those we determined the correspoding X values, and subtracted to find the offset.
+<p><a href="http://artint.info/figures/ch07/sigmoidc.gif">This was the function we chose</a>, and what we did was essentially calculate a "horizontal offset" for each ally and enemy champion. The win rates (global and champion combination) went on the Y axis, and from those we determined the correspoding X values, and subtracted to find the offset.
 
 We then stated that the total effect of the other 9 characters was simply the sum of these horizontal offsets with the default X value passed back through the function to find a percentage. This is where the relationship between the concepts of "scores" and "winrates" gets a bit fuzzy. Because the output value is just a winrate run both ways through the function, it resembles a winrate, but isn't truly one. It is, however, a good relative score between multiple champions.
 
