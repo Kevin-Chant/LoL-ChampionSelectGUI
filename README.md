@@ -33,6 +33,7 @@ as well as go back and fix the reliance on searching the backend text of other w
   <li>After you're done selecting, a pop-up will appear detailing the top 5 recommendations (not in order) alongside their scores.</li>
   </ol>
   </li>
+<li>If the program freezes, exits unexpectedly, or otherwise errors, run the Debug.bat script to see the error output to the command line. This will be useful in creating a helpful bug-reporting form </li>
   </uol>
   </p>
 
