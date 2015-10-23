@@ -108,7 +108,7 @@ public class ChampStatisticReader {
         HashMap<String, String> DICTIONARY = new HashMap<String,String>();
         try {
             String encoder = "UTF-8";
-            FileInputStream in = new FileInputStream(".data/championlists/Champ_dictionary.txt");
+            InputStream in = ChampStatisticReader.class.getResourceAsStream(".coredata/championlists/Champ_dictionary.txt");
             BufferedReader input = new BufferedReader(new InputStreamReader(in, encoder));
             String curr;
             while ((curr = input.readLine()) != null) {

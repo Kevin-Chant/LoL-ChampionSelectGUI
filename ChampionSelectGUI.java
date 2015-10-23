@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.util.PriorityQueue;
+import java.net.URL;
 
 /**
  * This class does the bulk of the work in getting the score.
@@ -67,13 +68,13 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	private static final ArrayList<String> CHAMPIONLIST = new ArrayList<String>();
 	static {
 		try {
-			File champListFile = new File(".data/championlists/allchamps.txt");
-			Scanner input = new Scanner(champListFile);
+			InputStream in = ChampionSelectGUI.class.getResourceAsStream(".coredata/championlists/allchamps.txt");
+			Scanner input = new Scanner(in);
 			while (input.hasNextLine()) {
 				CHAMPIONLIST.add(input.nextLine());
 			}
 	 	} catch (Exception e) {
-	 		System.out.println(e);
+	 		e.printStackTrace();
 	 	}
 	}
 
@@ -98,7 +99,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		champions = new ArrayList<JButton>();
 		addChampions(panel, CHAMPIONLIST);
 		tabs = new JLayeredPane();
-		ImageIcon tabIcon = new ImageIcon(getClass().getResource("background/ChampionsTab.png"));
+		URL url = getClass().getResource(".coredata/background/ChampionsTab.png");
+		ImageIcon tabIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		tabs.setPreferredSize(new Dimension(724, 53));
 		JLabel championTab = new JLabel();
 		championTab.setIcon(tabIcon);
@@ -147,9 +149,12 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	 * and the spots for both team's bans.
 	 */
 	public void setupBottomPanel() {
-		chatSlot = new ImageIcon(getClass().getResource("background/BottomCenter.png"));
-		blueBanSlot = new ImageIcon(getClass().getResource("background/LeftTeamBans.png"));
-		purpleBanSlot = new ImageIcon(getClass().getResource("background/RightTeamBans.png"));
+		URL url = getClass().getResource(".coredata/background/BottomCenter.png");
+		chatSlot = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
+		url = getClass().getResource(".coredata/background/LeftTeamBans.png");
+		blueBanSlot = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
+		url = getClass().getResource(".coredata/background/RightTeamBans.png");
+		purpleBanSlot = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		bottomPanel = new JLayeredPane();
 		bottomPanel.setPreferredSize(new Dimension(1280, 243));
 		JLabel blueBanLabel = new JLabel();
@@ -180,9 +185,11 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	 * Creates the side panels where the picks will be locked in
 	 */
 	public void setupSidePanels() {
-		leftTeamIcon = new ImageIcon(getClass().getResource("background/LeftTeam.png"));
+		URL url = getClass().getResource(".coredata/background/LeftTeam.png");
+		leftTeamIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		leftTeam = new JLabel(leftTeamIcon);
-		rightTeamIcon = new ImageIcon(getClass().getResource("background/RightTeam.png"));
+		url = getClass().getResource(".coredata/background/RightTeam.png");
+		rightTeamIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		rightTeam = new JLabel(rightTeamIcon);
 		leftTeam.setPreferredSize(new Dimension(273, 501));
 		rightTeam.setPreferredSize(new Dimension(273, 501));
@@ -522,7 +529,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    PriorityQueue<ScoredChampion> pq = new PriorityQueue<ScoredChampion>(X_RECOMMENDAITONS, new ScoredChampionComparator());
 	    ArrayList<String> roleChamps = new ArrayList<String>();
 	    try {
-		    Scanner input = new Scanner(new File(".data/roles/" + role + "champions.txt"));
+		    Scanner input = new Scanner(ChampionSelectGUI.class.getResourceAsStream(".coredata/roles/" + role + "champions.txt"));
 		    while (input.hasNextLine()) {
 		    	roleChamps.add(input.nextLine().split("\n")[0]);
 		    }
@@ -560,9 +567,6 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	    		if (enemyHist != null && ((enemyHist.wins + enemyHist.losses) > MINIMUM_GLOBAL_GAMES)) {
 		    		enemyHists.add(enemyHist);
 				}
-	    	}
-	    	if (globalData.get(champion) == null) {
-	    		System.out.println(champion);
 	    	}
 	    	double score = Calculations.calculateWinMultiplier(allyHists, enemyHists, globalData.get(champion));
 	    	if (userData.get(champion) != null) {
@@ -738,7 +742,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			return -1;
 		}
 		if (!cN.equals("noban")) {
-			ImageIcon champIcon = new ImageIcon(getClass().getResource("championicons/32px/" + cN + "Square.png"));
+			URL url = getClass().getResource(".coredata/championicons/32px/" + cN + "Square.png");
+			ImageIcon champIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 			JLabel champLabel = new JLabel();
 			JLabel champName = new JLabel(cN);
 			champName.setBackground(Color.BLACK);
@@ -766,7 +771,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			return -1;
 		}
 		if (!cN.equals("noban")) {
-			ImageIcon champIcon = new ImageIcon(getClass().getResource("championicons/32px/" + cN + "Square.png"));
+			URL url = getClass().getResource(".coredata/championicons/32px/" + cN + "Square.png");
+			ImageIcon champIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 			JLabel champLabel = new JLabel();
 			champLabel.setIcon(champIcon);
 			bottomPanel.add(champLabel, new Integer(3));
@@ -791,7 +797,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		if (bannedChamps.contains(cN) || bluePicks.contains(cN) || purplePicks.contains(cN)) {
 			return -1;
 		}
-		ImageIcon champIcon = new ImageIcon(getClass().getResource("championicons/" + cN + "Square.png"));
+		URL url = getClass().getResource(".coredata/championicons/" + cN + "Square.png");
+		ImageIcon champIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		JLabel champLabel = new JLabel();
 		champLabel.setIcon(champIcon);
 		leftPanel.add(champLabel, new Integer(2));
@@ -809,7 +816,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		if (bannedChamps.contains(cN) || bluePicks.contains(cN) || purplePicks.contains(cN)) {
 			return -1;
 		}
-		ImageIcon champIcon = new ImageIcon(getClass().getResource("championicons/" + cN + "Square.png"));
+		URL url = getClass().getResource(".coredata/championicons/" + cN + "Square.png");
+		ImageIcon champIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 		JLabel champLabel = new JLabel();
 		champLabel.setIcon(champIcon);
 		rightPanel.add(champLabel, new Integer(2));
@@ -827,8 +835,10 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 	private void addChampions(JPanel p, ArrayList<String> aL) {
 		p.removeAll();
 		for (String c : aL) {
-			ImageIcon icon = new ImageIcon(getClass().getResource("championicons/" + c + "Square.png"));
+			URL url = getClass().getResource(".coredata/championicons/" + c + "Square.png");
+			ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(url));
 			JButton currB = new JButton(icon);
+			currB.setName(c);
 			currB.addActionListener(this);
 			currB.setPreferredSize(new Dimension(64, 64));
 			p.add(currB);
@@ -874,14 +884,7 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 			purplePick = false;
 			return;
 		}
-		String output = "";
-		if (text != null && text.equals("noban")) {
-			output = "noban";
-		} else {
-			String[] arr = ((JButton) evt.getSource()).getIcon().toString().split("/");
-			output = arr[arr.length-1].split("Square")[0];
-			output = output.replaceAll("%20", " ");
-		}
+		String output = text;
 		if (blueBan) {
 			int err = banBlueChampion(output);
 			if (err == 0) {

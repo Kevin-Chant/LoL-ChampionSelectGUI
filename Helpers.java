@@ -4,6 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+import java.io.File;
+import java.io.InputStream;
 
 /**
  * A class of static helper methods that involve either reading or writing local data files
@@ -19,11 +21,11 @@ public class Helpers {
 
 	public static HashMap<String, History> loadHistMap(boolean ally) {
 		try {
-			FileInputStream fis = null;
+			InputStream fis = null;
 			if (ally) {
-				fis = new FileInputStream(".data/history data/.allyHistMap.ser");
+				fis = Helpers.class.getResourceAsStream(".coredata/history data/.allyHistMap.ser");
 			} else {
-				fis = new FileInputStream(".data/history data/.enemyHistMap.ser");
+				fis = Helpers.class.getResourceAsStream(".coredata/history data/.enemyHistMap.ser");
 			}
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			HashMap<String, History> map = (HashMap<String, History>) ois.readObject();
@@ -63,6 +65,10 @@ public class Helpers {
 
 	public static void saveUserData(HashMap<String, Double> map, String summonerName, String region) {
 		try {
+			File dir = new File(".data/user/" + region);
+			if (!dir.isDirectory()) {
+				dir.mkdirs();
+			}
 			FileOutputStream fos = new FileOutputStream(".data/user/" + region + "/" + summonerName + ".ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(map);
@@ -75,6 +81,10 @@ public class Helpers {
 
 	public static void saveGlobalData(HashMap<String, Double> map, String region) {
 		try {
+			File dir = new File(".data/global");
+			if (!dir.isDirectory()) {
+				dir.mkdirs();
+			}
 			FileOutputStream fos = new FileOutputStream(".data/global/" + region + ".ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(map);
