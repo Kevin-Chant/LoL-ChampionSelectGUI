@@ -1,3 +1,5 @@
+<p>URGENT UPDATE</p>
+<p>Currently the .jar file does not work unless the .data, championicons, and background folders exist alongside the .jar. This is not intentional and I'm currently working to remedy this. You can still use the program in the meantime if you choose to manually download each required file (though I don't think it's worth the time and effort). This will be fixed ASAP</p>
 <hr />
 
 <p>Latest update: 10/23/2015</p>
