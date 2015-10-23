@@ -1,10 +1,10 @@
 <hr />
 
-<p>Latest update: 10/22/2015</p>
+<p>Latest update: 10/23/2015</p>
 
 <p>Patch 5.20</p>
 
-<p>Information Update</p>
+<p>One-Download Executable Available Now!</p>
 
 <hr />
 
