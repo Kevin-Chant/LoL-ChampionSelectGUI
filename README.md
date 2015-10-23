@@ -32,7 +32,7 @@ as well as go back and fix the reliance on searching the backend text of other w
   <li>Simply double click the file and you're good to go! If the error "javac is not recognized as an internal or external command" appears, look into updating the environment variable PATH (<a href="http://tinyurl.com/q8wfejk">Oracle Tutorial</a>)</li>
   <li>You will be asked to input a few fields initially, then the main League-style GUI will run.</li>
   <li>Click the champions in the central pane to ban and pick, noting that the left team is blue, and right is red (THIS IS DIFFERENT FROM LEAGUE'S CONVENTION AND IS SUBJECT TO UPDATE IN THE NEAR FUTURE)</li>
-  <li>After you're done selecting, a pop-up will appear detailing the top 5 recommendations (not in order) alongside their scores.<li>
+  <li>After you're done selecting, a pop-up will appear detailing the top 5 recommendations (not in order) alongside their scores.</li>
   </ol>
   </li>
   </uol>
