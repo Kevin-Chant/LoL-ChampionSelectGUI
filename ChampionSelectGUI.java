@@ -373,8 +373,8 @@ public class ChampionSelectGUI extends JFrame implements ActionListener, WindowL
 		});
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (input.getSelectedItem().equals("---Select Region---")) {
-					JOptionPane.showMessageDialog(contentPanel, "Please select a region.", "Message", JOptionPane.ERROR_MESSAGE);
+				if (input.getSelectedItem().equals("---Select Role---")) {
+					JOptionPane.showMessageDialog(contentPanel, "Please select a role.", "Message", JOptionPane.ERROR_MESSAGE);
 				} else {
 					t.roleArr[0] = input.getSelectedItem();
 					d.setVisible(false);
