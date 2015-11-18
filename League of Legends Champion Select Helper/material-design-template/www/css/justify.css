@@ -1,0 +1,16 @@
+.justify {
+	text-align: justify;
+	text-justify: inter-word;
+}
+
+.standard-size {
+	font-size: large;
+}
+
+.center-image {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	height:100%;
+}
