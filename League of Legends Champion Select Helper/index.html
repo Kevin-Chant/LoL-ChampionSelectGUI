@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>League of Legends Champion Select Helper Tool</title>
+
+    <!-- CSS  -->
+    <link href="min/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="min/custom-min.css" type="text/css" rel="stylesheet">
+    <link href="min/justify.css" type="text/css" rel="stylesheet">
+</head>
+<body id="top" class="scrollspy">
+
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+</div>
+
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="#" id="logo-container" class="brand-logo ">Champion Select Helper</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#Intro">What is it?</a></li>
+                    <li><a href="#Work">How it works</a></li>
+                    <li><a href="#Data">Algorithm</a></li>
+                    <li><a href="#Changes">Changes</a></li>
+                    <li><a href="#Install">Installation</a></li>
+                    <li><a href="https://github.com/Kevin-Chant/LoL-ChampionSelectGUI/tree/master" target="_blank">Download</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <img class = "center-image" src = "img/ExampleOutput.png" alt = "Failed_To_Load">
+            <div class="col s8 offset-s2">
+                <font size = "4">
+                    <div style = "word-wrap:break-word;">
+                        An example output recommendation for top lane. Note - This image was taken before getting a Riot API Production key and as such the data was extremely lackluster, leading to counterintuitive recommendations.
+                        <br>
+                        <br>
+                    </div>
+                </font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Intro and service-->
+<div id="Intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <h2 class="header text_b">What is it?</h2>
+            <div class="col s8 offset-s2">
+                <font size = "5">
+                    <div style = "word-wrap:break-word;">
+                        <br>
+                        The League of Legends Champion Select Helper was designed to <span class="span_h2">allow solo queue players to optimize</span> their potential picks, and to <span class="span_h2">learn by example</span> how to pick to different situations.
+                        <br>
+                        <font size = "6">Disclaimer:</font> This program will recommend champions that you may not play (or even own, though this is slotted to be changed - See <u><a href="#Changes"><span class="span_h2">Upcoming Changes</span></a></u> for more info) and as such works best when used by a "Jack of All Trades" player because it will recommend whatever fits the situation best.
+                        <br>
+                        <br>
+                        All this is to say that you should use this program once you're at least familiar with every champion, and are willing to try out new things. Also, do not rely solely on this feedback, use your own judgement and intuition. This just provides a statistical summary of the situation to base your choice on.
+                        <br>
+                        <br>
+                        <br>
+                       
+                    </div>
+                </font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!--How it works-->
+<div class="section scrollspy" id="Work">
+    <div class="container">
+        <h2 class="header text_b">How it works</h2>
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-image">
+                        <img class = "center-image" src="img/Select Dialogs.png">
+                    </div>
+                    <div class="card-content">
+                        <p class = "justify">
+                            <font size = "5">
+                                First, you will be asked to input some basic data such as Summoner Name, Region, and what team you are on (you can see this by which team has the first ban, as well as the color of the text "Your Team" above the first pick). Currently, what role you will be playing is included in this stage but will be modified - and possibly moved - to match next season's champion select.
+                            </font>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-image">
+                        <img class = "center-image" src="img/MainGUI.png">
+                    </div>
+                    <div class="card-content">
+                        <p class = "justify">
+                            <font size = "5">
+                                Then, you will need to select all the bans and picks as they happen up until it is your turn. The currently banning team, or currently picking player will be highlighted. One note for this phase is that blue team is statically on the left side of this GUI, and red team is on the right, while in the client regardless of your team you will be on the left. The search bar functions the same as it does in the client. Simply click on a champion's icon to ban/pick (there is no lock in function yet, I'm debating between this and an undo button. For now, if you make a mistake you have to restart the program).
+                            </font>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section scrollspy" id="Data">
+    <div class="container">
+        <h2 class="header text_b">Processing the data</h2>
+
+        <div class="row">
+            <div class = "col s8 offset-s2">
+                <font size = "5">
+                    <div style = "word-wrap:break-word;">
+                        <br>
+                        At the top level, the program goes through every possible pick for your given role (currently defined by a list of meta picks, but will be changed) and assigns each a score. This score is based on how well they function with the champions that are already picked (determined from riot API, statistical survey of games with both champions on the same/opposing teams). After calculating what the "average" player's score is, it multiplies that score by a factor dependent on your history with the champion. Not yet implemented is another scaling factor to represent how generically strong the champion is (picks like Poppy and Talon currently have inflated winrates because usually the only people playing them are mains, so the average player won't perform as expected)
+                        <br>
+                        <br>
+                        This part will be quite in-depth about the function I used and how the program calculates a score for each champion. No TL;DRs here, so skip if you will.
+                        <br>
+                        <img class="center-image" src="img/sigmoid.png" style="width:325px;height:200px">
+                        <br>
+                        This is the graph of the function we used to model the winrate. The three major reasons this fits well are
+                        <ol>
+                            <li>The center (x = 0) corresponds to a y output of 0.5, or what should be the statistical average winrate for all champions</li>
+                            <li>The extremes approach 0 and 1 as x goes towards infinity in either direction. Again, this is the logical limit of a winrate model</li>
+                            <li>There is a clear idea of diminishing returns*, that is to say that as you continue shifting X right, the gains in Y lessen
+                            <br>
+                            <font size = "3">
+                                * A logical explanation of why this matters: Let's say you're examining Kog'Maw, who we will say has an average winrate of 50%. If you put him on a team with Lulu, his winrate should probably go up from what we all know about Juggermaw comps. So for this example let's say his winrate with Lulu on the team is 65% (additively 15% higher, multiplicatively 30%). For the sake of this explanation, let's make up three other hypothetical champions who help Kog'Maw equally (65% winrate). Now if you didn't have diminishing returns, the resulting winrate of Kog'Maw plus these 4 monsters is either additively 4*15% higher or 60% higher, resulting in 110%, or multiplicatively 130%^4 or 286% of its initial value, resulting in 143%. Neither of these makes sense in terms of math because probabilities should not exceed 100%. In English: since each additional support is increasing Kog'Maw's strength less and less (what's the difference between 2k and 2.5k hp shield), it makes sense that you'll have diminishing returns with more and more champions who are likely to win together.
+                            </font>
+                            </li>
+                        </ol>
+                        <br>
+                        The process:
+                        <br>
+                        <br>
+                        <img class="center-image" src="img/Sigmoid-Gif.gif" style="width:500px;height:300px">
+                        <br>
+                        <br>
+                        <font size = "5">
+                            As summarized in the gif, the way we assign a score has three steps.
+                            <ol>
+                                <li>Calculate a global "x" or horizontal position to describe the champion's average winrate</li>
+                                <li>Calculate a horizontal offset or "Δx" to describe how much each pick affects the champion in question</li>
+                                <li>Sum the offsets, and apply the total shift to x, then run that through the function to calculate a score.</li>
+                            </ol>
+                        </font>
+                    </div>
+                </font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section scrollspy" id="Changes">
+    <div class="container">
+        <h2 class="header text_b">Upcoming Changes</h2>
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <font size = "5">
+                    <div style = "word-wrap:break-word;">
+                        This section has not been completed yet. Check back soon!
+                    </div>
+                </font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section scrollspy" id="Install">
+    <div class="container">
+        <h2 class="header text_b">Requirements and Installation</h2>
+        <div class="row">
+            <div class="col s8 offset-s2">
+                <font size = "5">
+                    <div style = "word-wrap:break-word;">
+                        This section has not been completed yet. Check back soon!
+                    </div>
+                </font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<footer id="contact" class="page-footer default_color scrollspy">
+    <div class="container"> 
+       <img src = "img/GezangNA.png" alt = "Failed_To_Load" style = "width:200px;height:400px" align = "right" hspace="200">
+        <div class="row">
+            <div class="col l6 s12">
+                <form class="col s12" action="contact.php" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="mdi-action-account-circle prefix white-text"></i>
+                            <input id="icon_prefix" name="name" type="text" class="validate white-text">
+                            <label for="icon_prefix" class="white-text">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-communication-email prefix white-text"></i>
+                            <input id="icon_email" name="email" type="email" class="validate white-text">
+                            <label for="icon_email" class="white-text">Email-id</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi-editor-mode-edit prefix white-text"></i>
+                            <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
+                            <label for="icon_prefix2" class="white-text">Message</label>
+                        </div>
+                        <div class="col offset-s7 s5">
+                            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
+                                <i class="mdi-content-send right white-text"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer-copyright default_color">
+        <div class="container">
+            Made by <a class="white-text" href="http://joashpereira.com">Kevin Chant</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a> and Joash Pereira for the template
+        </div>
+    </div>
+</footer>
+
+
+    <!--  Scripts-->
+    <script src="min/plugin-min.js"></script>
+    <script src="min/custom-min.js"></script>
+
+    </body>
+</html>
