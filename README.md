@@ -1,8 +1,8 @@
-<p>Latest update: 10/23/2015</p>
+<p>Latest update: 11/20/2015</p>
 
-<p>Patch 5.20</p>
+<p>Patch 5.22</p>
 
-<p>One-Download Executable Available Now!</p>
+<p>Check out the <a href = "http://kevin-chant.github.io/LoL-ChampionSelectGUI">official website</a>! (Work in Progress)</p>
 
 <hr />
 
